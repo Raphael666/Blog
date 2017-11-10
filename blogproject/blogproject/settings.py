@@ -25,7 +25,7 @@ SECRET_KEY = '5-hcwsfbnf^1#ts%*!@y0kbhx+8%g@xi^qy2oe&nhho(kfsq!y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.raphael666.top']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'www.raphael666.top']
 
 
 # Application definition
