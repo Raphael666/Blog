@@ -62,11 +62,35 @@ class Post(models.Model):
     # 因为我们规定一篇文章只能有一个作者，而一个作者可能会写多篇文章，因此这是一对多的关联关系，和 Category 类似。
     author = models.ForeignKey(User)
 
+    #PositiveIntegerField类型的值只允许为0或正整数
+    views = models.PositiveIntegerField(default=0)
+
+
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
         return reverse('blog:detail', kwargs={'pk': self.pk})
+
+    def increase_views(self):
+        self.views += 1
+        self.save(update_fields=['views'])
+
+    def save_1(self, *args, *kwarg):
+        # 未填写摘要
+        if not self.excerpt:
+            # 先实例化一个Markdown类，用于渲染body的文本
+            md = markdown.Markdown(extensions=[
+                'markdown.extension.extra',
+                'markdown.extension.codehilite'
+            ])
+            # 先将Markdown文本渲染成HTML文本
+            # strip_tags 去掉HTML文本的HTML标签
+            # 从文本摘取前54个字符赋给excerpt
+            self.excerpt = strip_tags(md.convert(self.body))[:54]
+
+        super(Post, self).save(*args, *kwarg)
+
 
 
     class Meta:
