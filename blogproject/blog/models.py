@@ -1,11 +1,13 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 
-
+import markdown
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.six import python_2_unicode_compatible
 from django.urls import reverse
+from django.utils.html import strip_tags
+
 
 
 # Create your models here.
