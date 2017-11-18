@@ -78,7 +78,7 @@ class Post(models.Model):
         self.views += 1
         self.save(update_fields=['views'])
 
-    def save_1(self, *args, *kwarg):
+    def save_1(self, *args, **kwarg):
         # 未填写摘要
         if not self.excerpt:
             # 先实例化一个Markdown类，用于渲染body的文本
@@ -91,7 +91,7 @@ class Post(models.Model):
             # 从文本摘取前54个字符赋给excerpt
             self.excerpt = strip_tags(md.convert(self.body))[:54]
 
-        super(Post, self).save(*args, *kwarg)
+        super(Post, self).save(*args, **kwarg)
 
 
 
