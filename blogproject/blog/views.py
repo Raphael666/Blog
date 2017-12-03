@@ -2,7 +2,8 @@
 # -*- coding: UTF-8 -*-
 
 
-from markdown import markdown
+import markdown
+
 from django.shortcuts import render, get_object_or_404
 from .models import Post, Category
 from comments.forms import CommentForm

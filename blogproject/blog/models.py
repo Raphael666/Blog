@@ -1,7 +1,8 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 
-from markdown import markdown
+import markdown
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.six import python_2_unicode_compatible
@@ -84,7 +85,7 @@ class Post(models.Model):
             # 先实例化一个Markdown类，用于渲染body的文本
             md = markdown.Markdown(extensions=[
                 'markdown.extension.extra',
-                'markdown.extension.codehilite'
+                'markdown.extension.codehilite',
             ])
             # 先将Markdown文本渲染成HTML文本
             # strip_tags 去掉HTML文本的HTML标签
