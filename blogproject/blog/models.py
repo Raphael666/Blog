@@ -41,6 +41,7 @@ class Post(models.Model):
 
     # 文章正文使用TextField。
     # 存储比较短的字符串可以使用 CharField，但对于文章的正文来说可能会是一大段文本，因此使用 TextField 来存储大段文本。
+
     body = models.TextField()
 
     # 这两个列分别表示文章的创建时间和最后一次修改时间，存储时间的字段用 DateTimeField 类型。
@@ -79,20 +80,20 @@ class Post(models.Model):
         self.views += 1
         self.save(update_fields=['views'])
 
-    def save(self, *args, **kwarg):
-        # 未填写摘要
-        if not self.excerpt:
-            # 先实例化一个Markdown类，用于渲染body的文本
-            md = markdown.Markdown(extensions=[
-                'markdown.extension.extra',
-                'markdown.extension.codehilite',
-            ])
-            # 先将Markdown文本渲染成HTML文本
-            # strip_tags 去掉HTML文本的HTML标签
-            # 从文本摘取前54个字符赋给excerpt
-            self.excerpt = strip_tags(md.convert(self.body))[:54]
-
-        super(Post, self).save(*args, **kwarg)
+    # def save(self, *args, **kwarg):
+    #     # 未填写摘要
+    #     if not self.excerpt:
+    #         # 先实例化一个Markdown类，用于渲染body的文本
+    #         md = markdown.Markdown(extensions=[
+    #             'markdown.extension.extra',
+    #             'markdown.extension.codehilite',
+    #         ])
+    #         # 先将Markdown文本渲染成HTML文本
+    #         # strip_tags 去掉HTML文本的HTML标签
+    #         # 从文本摘取前54个字符赋给excerpt
+    #         self.excerpt = strip_tags(md.convert(self.body))[:54]
+    #
+    #     super(Post, self).save(*args, **kwarg)
 
 
 
