@@ -55,7 +55,7 @@ class PostDetailView(DetailView):
     content_type = 'post'
 
     def get(self, request, *args, **kwargs):
-        response = super(PostDetailView, self).get(request, *args, *kwargs)
+        response = super(PostDetailView, self).get(request, *args, **kwargs)
 
         self.object.increase_views()
 
