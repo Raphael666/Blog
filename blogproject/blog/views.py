@@ -66,7 +66,7 @@ class PostDetailView(DetailView):
 
         post = super(PostDetailView, self).get_object(queryset=None)
 
-        post.body = Markdown.markdown(post.body,
+        post.body = markdown.markdown(post.body,
                                       extension=[
                                           'markdown.extension.extra',
                                           'markdown.extension.codehilite',
