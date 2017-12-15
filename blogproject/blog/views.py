@@ -19,7 +19,7 @@ class IndexView(ListView):
     content_type = 'post_list'
 
     # 指定 paginate_by 属性后开启分页功能，其值代表每一页包含多少篇文章
-    paginate_by = 3
+    paginate_by = 1
 
     def get_context_data(self, **kwargs):
         '''
@@ -137,7 +137,7 @@ class IndexView(ListView):
 
             # 是否需要显示第一页和第一页前的省略号
             if left[0] > 2:
-                left_has_more =True
+                left_has_more = True
             if left[0] > 1:
                 first = True
 
