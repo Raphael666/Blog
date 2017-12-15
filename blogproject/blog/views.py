@@ -95,7 +95,7 @@ class IndexView(ListView):
             # 此时只需要获得当前页面右边的连续页码号
             # 比如分页页码列表是[1, 2, 3, 4]，那么获取的就是[2, 3]
             # 这里只获取了当前页码后连续两个页码。
-            right = page_range[page_number, page_number + 2]
+            right = page_range[page_number: page_number + 2]
 
             # 如果最右边的页码比最后一页页码号减去1还小，
             # 说明最右边的页码号和最后一页页码号之间需要显示省略号，通过 right_has_more 来指示
