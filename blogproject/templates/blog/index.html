@@ -87,7 +87,7 @@
                         <li><a href="?page={{ i }}">{{ i }}</a></li>
                     {% endfor %}
                 {% endif %}
-                <li class="current-page"><a href="{{ page_obj.number }}">{{ page_obj.number }}</a></li>
+                <li><a class="current-page" href="{{ page_obj.number }}">{{ page_obj.number }}</a></li>
                 {% if right %}
                     {% for i in right %}
                         <li><a href="?page={{ i }}">{{ i }}</a></li>
