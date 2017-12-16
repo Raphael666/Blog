@@ -885,24 +885,24 @@ img {
 /**
  * 13.0 - Pagination
  */
-.pagination-simple {
-    padding-left: 30px;
-    font-size: 16px;
-}
+/*.pagination-simple {*/
+    /*padding-left: 30px;*/
+    /*font-size: 16px;*/
+/*}*/
 
-.pagination ul {
-    list-style: none;
-}
+/*.pagination ul {*/
+    /*list-style: none;*/
+/*}*/
 
-.pagination ul li {
-    display: inline-block;
-    font-size: 16px;
-    margin-right: 5px;
-}
+/*.pagination ul li {*/
+    /*display: inline-block;*/
+    /*font-size: 16px;*/
+    /*margin-right: 5px;*/
+/*}*/
 
-.current a {
-    color: red;
-}
+/*.current a {*/
+    /*color: red;*/
+/*}*/
 
 .pagination {margin-top: 25px; text-align: center;}
 .pagination a {
