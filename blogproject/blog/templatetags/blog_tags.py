@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 
 from django import template
-from ..models import Post, Category
+from ..models import Post, Category, Tag
 from django.db.models.aggregates import Count
 
 
@@ -23,3 +23,6 @@ def get_category():
     # return Category.objects.all()
     return Category.objects.annotate(num_posts=Count('post')).filter(num_posts_gt=0)
 
+@register.simple_tag
+def get_tag():
+    return Tag.objects.annotate(num_posts=Count('post')).filter(num_post_gt=0)
