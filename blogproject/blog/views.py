@@ -5,15 +5,15 @@
 import markdown
 
 from django.shortcuts import render, get_object_or_404
-from .models import Post, Category
+from .models import Post, Category, Tag
 from comments.forms import CommentForm
 from django.views.generic import ListView, DetailView
 from django.utils.text import slugify
 from markdown.extensions.toc import TocExtension
 
-# def index(request):
-#     post_list = Post.objects.all()
-#     return render(request, 'blog/index.html', context={'post_list': post_list})
+def index(request):
+    post_list = Post.objects.all()
+    return render(request, 'blog/index.html', context={'post_list': post_list})
 
 class IndexView(ListView):
     model = Post
