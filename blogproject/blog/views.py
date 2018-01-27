@@ -8,6 +8,8 @@ from django.shortcuts import render, get_object_or_404
 from .models import Post, Category
 from comments.forms import CommentForm
 from django.views.generic import ListView, DetailView
+from django.utils.text import slugify
+from markdown.extensions.toc import TocExtension
 
 # def index(request):
 #     post_list = Post.objects.all()
@@ -154,14 +156,6 @@ class IndexView(ListView):
 
 
 
-
-
-
-
-
-
-
-
 # def detail(request, pk):
 #     post = get_object_or_404(Post, pk=pk)
 #
@@ -209,12 +203,13 @@ class PostDetailView(DetailView):
 
         post = super(PostDetailView, self).get_object(queryset=None)
 
-        post.body = markdown.markdown(post.body,
-                                      extension=[
-                                          'markdown.extension.extra',
-                                          'markdown.extension.codehilite',
-                                          'markdown.extension.toc',
-                                      ])
+        md = markdown.Markdown(extension=[
+            'markdown.extension.extra',
+            'markdown.extension.codehilite',
+            TocExtension(slugify=slugify),
+        ])
+        post.body = md.convert(post.body)
+        post.toc = md.toc
         return post
 
     def get_context_data(self, **kwargs):
@@ -241,8 +236,6 @@ class ArchivesView(ListView):
         return super(ArchivesView, self).get_queryset().filter(created_time__year=year,
                                                                created_time__month=month
                                                                )
-
-
 
 
 # def category(request, pk):
