@@ -33,7 +33,7 @@ class IndexView(ListView):
         '''
 
         # 首先获得父类生成的传递给模板的字典
-        context = super().get_context_data(**kwargs)
+        context = super(IndexView, self).get_context_data(**kwargs)
 
         # 父类生成的字典中已有 paginator、page_obj、is_paginated 这三个模板变量，
         # paginator 是 Paginator 的一个实例，
@@ -156,33 +156,28 @@ class IndexView(ListView):
 
 
 
-# def detail(request, pk):
-#     post = get_object_or_404(Post, pk=pk)
-#
-#     #阅读量+1
-#     post.increase_views()
-#
-#     post.body = markdown.markdown(post.body,
-#                                   extensions=[
-#                                       'markdown.extensions.extra',
-#                                       'markdown.extensions.codehilite',
-#                                       'markdown.extensions.toc',
-#                                   ])
-#
-#     form = CommentForm()
-#     comment_list = post.comment_set.all()
-#     context = {'post': post,
-#                'form': form,
-#                'comment_list': comment_list
-#                }
-#     return render(request, 'blog/detail.html', context=context)
+def detail(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+
+    #阅读量+1
+    post.increase_views()
+
+    post.body = markdown.markdown(post.body,
+                                  extensions=[
+                                      'markdown.extensions.extra',
+                                      'markdown.extensions.codehilite',
+                                      'markdown.extensions.toc',
+                                  ])
+
+    form = CommentForm()
+    comment_list = post.comment_set.all()
+    context = {'post': post,
+               'form': form,
+               'comment_list': comment_list
+               }
+    return render(request, 'blog/detail.html', context=context)
 
 
-# def archives(request, year, month):
-#     post_list = Post.objects.filter(created_time__year=year,
-#                                     created_time__month=month
-#                                     )
-#     return render(request, 'blog/index.html', context={'post_list': post_list})
 
 
 class PostDetailView(DetailView):
@@ -223,6 +218,12 @@ class PostDetailView(DetailView):
         })
 
         return context
+
+def archives(request, year, month):
+    post_list = Post.objects.filter(created_time__year=year,
+                                    created_time__month=month
+                                    )
+    return render(request, 'blog/index.html', context={'post_list': post_list})
 
 
 class ArchivesView(ListView):
