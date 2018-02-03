@@ -25,4 +25,4 @@ def get_category():
 
 @register.simple_tag
 def get_tags():
-    return Tag.objects.annotate(num_posts=Count('post')).filter(num_post__gt=0)
+    return Tag.objects.annotate(num_posts=Count('post')).filter(num_posts__gt=0)
